@@ -10,12 +10,13 @@ public class PlayerController : MonoBehaviour
     private bool isMoving;
     private Vector2 input;
 
-/*    // Start is called before the first frame update
-    void Start()
+    private Animator animator;
+
+    private void Awake()
     {
-        isMoving = false;
+        animator = GetComponent<Animator>();
     }
-*/
+
     // Update is called once per frame
     void Update()
     {
@@ -23,12 +24,14 @@ public class PlayerController : MonoBehaviour
         {
             input.x = Input.GetAxisRaw("Horizontal");
             input.y = Input.GetAxisRaw("Vertical");
-
+            
             //remove diagonal movement
             if (input.x != 0) input.y = 0;
 
             if (input != Vector2.zero)
             {
+                animator.SetFloat("moveX", input.x);
+                animator.SetFloat("moveY", input.y);
                 var targetPos = transform.position;
                 targetPos.x += input.x;
                 targetPos.y += input.y;
@@ -36,6 +39,8 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(Move(targetPos));
             }
         }
+
+        animator.SetBool("isMoving", isMoving);
     }
 
     IEnumerator Move(Vector3 targetPos)
