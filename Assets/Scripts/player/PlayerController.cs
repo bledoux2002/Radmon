@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsWalkable(Vector3 targetPos)
     {
-        if (Physics2D.OverlapCircle(targetPos, 0.15f, solidObjectsLayer) != null) //radius cant be 0.2 or else you cant walk up at a solid object, you stop a cell before
+        if (Physics2D.OverlapCircle(targetPos, 0.05f, solidObjectsLayer) != null) //radius cant be 0.2 or else you cant walk up at a solid object, you stop a cell before
         {
             return false;
         }
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckForEncounters()
     {
-        if (Physics2D.OverlapCircle(transform.position, 0.15f, grassLayer) != null) //radius cant be 0.2 or else encounters will happen below grass, 0.19 causes issue in bottom left corner, 0.15 lets encounters happen in middle but not on edges
+        if (Physics2D.OverlapCircle(transform.position, 0.05f, grassLayer) != null) //radius cant be 0.2 or else encounters will happen below grass, 0.19 causes issue in bottom left corner, 0.15 lets encounters happen in middle but not on edges
         {
             if (Random.Range(1, 101) <= 10)
             {
