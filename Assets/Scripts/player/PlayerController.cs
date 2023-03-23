@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsWalkable(Vector3 targetPos)
     {
-        if (Physics2D.OverlapCircle(targetPos, 0.2f, solidObjectsLayer) != null)
+        if (Physics2D.OverlapCircle(targetPos, 0.15f, solidObjectsLayer) != null) //radius cant be 0.2 or else you cant walk up at a solid object, you stop a cell before
         {
             return false;
         }
